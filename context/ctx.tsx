@@ -1,6 +1,7 @@
 import { useContext, createContext, type PropsWithChildren } from "react";
 import { useStorageState } from "./useStorageState";
 import { Session } from "@/type";
+import { router } from "expo-router";
 
 const AuthContext = createContext<{
   signIn: (email: string) => void;
@@ -37,8 +38,9 @@ export function SessionProvider({ children }: PropsWithChildren) {
           // Perform sign-in logic here
           setSession({ email: email, role: "admin", userId: "123" });
         },
-        signOut: () => {
-          setSession(null);
+        signOut: async () => {
+          await router.replace("/sign-in");
+          console.log("User redirected to home");
         },
         session,
         isLoading,

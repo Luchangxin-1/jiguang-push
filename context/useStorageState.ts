@@ -64,10 +64,9 @@ export function useStorageState<T>(key: string): UseStateHook<T> {
     (value: T | null) => {
       setState(value);
       console.log("Session set:", value);
-      setStorageItemAsync(key, value ? JSON.stringify(value) : null); // 将对象转换为 JSON 字符串
+      setStorageItemAsync(key, value ? JSON.stringify(value) : null);
     },
     [key]
   );
-
   return [state, setValue];
 }

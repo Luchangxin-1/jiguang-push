@@ -17,8 +17,8 @@ import { useSession } from "@/context/ctx";
 const SignInScreen = () => {
   const { signIn, isLoading, session } = useSession();
   const [signInData, setSignInData] = useState({
-    email: "",
-    password: "",
+    email: "123@qq.com",
+    password: "123456",
   });
   const verifySignIn = () => {
     if (signInData.email == "123@qq.com" && signInData.password == "123456") {
@@ -26,12 +26,6 @@ const SignInScreen = () => {
       router.replace("/(app)/");
     }
   };
-  useEffect(() => {
-    if (session) {
-      router.replace("/(app)/");
-    }
-  }, [session, isLoading]);
-  console.log("session", session);
 
   return (
     <View style={styles.container}>
