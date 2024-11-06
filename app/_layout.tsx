@@ -1,17 +1,21 @@
 import { useFonts } from "expo-font";
-import { Stack, useRouter } from "expo-router";
+import { router, Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
-import { SessionProvider } from "../context/ctx";
+import { SessionProvider, useSession } from "../context/ctx";
 import JPush from "jpush-react-native";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const { signIn, session } = useSession();
+
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    Noto: require("@/assets/fonts/NotoSerifJP-VariableFont_wght.ttf"),
+    ZCool: require("@/assets/fonts/ZCOOLKuaiLe-Regular.ttf"),
   });
   useEffect(() => {
     // 注册消息推送
@@ -32,7 +36,7 @@ export default function RootLayout() {
     JPush.addNotificationListener((r) => {
       console.log(JSON.stringify(r)); // 此处仅作为演示处理
     });
-  }, []);
+  });
 
   useEffect(() => {
     if (loaded) {
