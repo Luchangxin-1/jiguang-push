@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { SessionProvider, useSession } from "../context/ctx";
 import JPush from "jpush-react-native";
-
+import "../global.css";
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
